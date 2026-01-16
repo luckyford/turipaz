@@ -1,1 +1,1 @@
-web: gunicorn turipaz.wsgi
+web: gunicorn turipaz.wsgi:application

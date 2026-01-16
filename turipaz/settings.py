@@ -12,11 +12,12 @@ environ.Env.read_env()  # Lee un archivo .env si existe
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Seguridad
-SECRET_KEY = env('SECRET_KEY', default='tu_secret_key_de_prueba')
-DEBUG = env('DEBUG', default=False)
+SECRET_KEY = env("SECRET_KEY")
+
+DEBUG = env.bool('DEBUG', default=False)
 
 # Permitir tu dominio en Render
-ALLOWED_HOSTS = ['*']  # Temporal para probar, luego puedes poner tu dominio real
+ALLOWED_HOSTS = ['turipaz.onrender.com']  # Temporal para probar, luego puedes poner tu dominio real
 
 # Aplicaciones
 INSTALLED_APPS = [
@@ -64,11 +65,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'turipaz.wsgi.application'
 
-# Base de datos (PostgreSQL recomendado en producción)
+import dj_database_url
+
 DATABASES = {
-    'default': dj_database_url.config(
-        default=f'sqlite:///{BASE_DIR / "db.sqlite3"}'
-    )
+    'default': dj_database_url.config(default=f"sqlite:///{os.path.join(BASE_DIR, 'db.sqlite3')}")
 }
 
 # Password validation
@@ -86,14 +86,12 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-# Archivos estáticos
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'turipaz', 'static')]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# Archivos media (uploads)
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 
 # Configuración de seguridad para Render (opcional)
 SECURE_SSL_REDIRECT = not DEBUG
