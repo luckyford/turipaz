@@ -1,0 +1,148 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Servicios</title>
+    <link rel="stylesheet" href="{% static 'css/styles4-0.css' %}">
+</head>
+<style>
+ /* CONTENEDOR GENERAL DE SERVICIOS */
+.menu-2 {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+/* GRID DE TARJETAS */
+.servicios-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    list-style: none;
+    padding: 0;
+}
+
+/* TARJETA */
+.servicio-card {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(6px);
+    border-radius: 16px;
+    padding: 22px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* EFECTO HOVER */
+.servicio-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+}
+
+/* NOMBRE */
+.servicio-card h3 {
+    margin-bottom: 10px;
+    font-size: 20px;
+    color: #1a1a1a;
+}
+
+/* TEXTO */
+.servicio-card p {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+/* LINK */
+.servicio-card a {
+    text-decoration: none;
+    color: #0077ff;
+    font-weight: bold;
+}
+
+.servicio-card a:hover {
+    text-decoration: underline;
+}
+       /* parte de fondo cinematica */
+        .mi-elemento {
+            animation: aparecer 9s ease-out;
+        }
+
+        .background-slider {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-size: cover;
+            background-position: center;
+            animation: cambioSuave 16s infinite;
+            background-attachment: scroll;
+        }
+
+        @keyframes cambioSuave {
+            2%, 100% {
+                background-image: url("{% static 'img/cielo.png.jpg' %}");
+            }
+
+            35% {
+                background-image: url("{% static 'img/destinos.png' %}");
+            }
+
+            50% {
+                background-image: url("{% static 'img/eventos.png' %}");
+            }
+
+            75% {
+                background-image: url("{% static 'img/paisaje.png' %}");
+            }
+        }
+        
+        .text-with-image {
+            font-family: 'Trebuchet MS', Arial, sans-serif;
+            font-size: 60px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: transparent;
+            background-image: url("https://lirp.cdn-website.com/f4f7809c/dms3rep/multi/opt/playas-de-la-paz-1024x640-1-640w.jpg");
+            background-size: cover;
+            background-position: center;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+<body>
+    <div class="background-slider"></div>
+    <div class="container mi-elemento">
+    <center><h1 class="text-with-image">Lista de Servicios</h1></center>
+    </div>
+    <section class="menu-2 fade-in">
+    {% if servicios %}
+        <ul class="servicios-grid">
+            {% for servicio in servicios %}
+                <li class="servicio-card">
+                    <h3>
+                        <a href="{% url 'detalle_servicio' servicio.id %}">
+                            {{ servicio.nombre }}
+                        </a>
+                    </h3>
+                    <p><strong>Categoría:</strong> {{ servicio.get_categoria_display }}</p>
+                    <p>{{ servicio.descripcion|truncatewords:20 }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No hay servicios disponibles.</p>
+    {% endif %}
+</section>
+
+    <a class="a box-img" href="{% url 'inicio' %}">Volver a inicio</a>
+         <footer class="footer-1">
+          <div class="footer-content-1">
+                <p>&copy; 2024 Turismo La Paz | Todos los derechos reservados</p>
+          </div>
+</body>
+</html>

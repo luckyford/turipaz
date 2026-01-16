@@ -1,0 +1,131 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del Destino</title>
+    <link rel="stylesheet" href="{% static 'css/styles3-0.css' %}">
+    <style>
+        /* parte de fondo cinematica */
+        .mi-elemento {
+            animation: aparecer 9s ease-out;
+        }
+
+        .background-slider {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-size: cover;
+            background-position: center;
+            animation: cambioSuave 16s infinite;
+            background-attachment: scroll;
+        }
+
+        @keyframes cambioSuave {
+            2%, 100% {
+                background-image: url("{% static 'img/cielo.png.jpg' %}");
+            }
+
+            35% {
+                background-image: url("{% static 'img/servicios.png' %}");
+            }
+
+            50% {
+                background-image: url("{% static 'img/eventos.png' %}");
+            }
+
+            75% {
+                background-image: url("{% static 'img/paisaje.png' %}");
+            }
+        }
+
+        .container {
+            width: 100%;
+            text-align: center;
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .text-with-image {
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            font-size: 50px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: transparent;
+            background-image: url("https://cloudfront-us-east-1.images.arcpublishing.com/eluniversal/HKHLO3VMGNAMHFJVAAER5OB32Q.jpg");
+            background-size: cover;
+            background-position: center;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+
+        .box-img {
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgb(221, 214, 214);
+            transition: transform 0.3s ease;
+        }
+
+        /* Estilos para el contenedor de detalles */
+        .detalles-container {
+            background: #ffffff;
+            border-radius: 14px;
+            padding: 20px;
+            text-align: left;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            max-width: 800px;
+            margin: 20px auto;
+        }
+
+        .detalles-container p {
+            margin: 10px 0;
+            color: #333;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="background-slider"></div>
+    <center><h1 class="text-with-image">Detalles Generales de Destinos</h1></center>
+    </div>
+
+    
+    <div class="detalles-container fade-in">
+        <h1 class="h1-1">{{ destino.nombre }}</h1>
+        <p class="p">{{ destino.descripcion }}</p>
+        <p class="p">Ubicación: {{ destino.ubicacion }}</p>
+        <p class="p">Tipo: {{ destino.get_tipo_display }}</p>
+        <p class="p">Horario: {{ destino.horario }}</p>
+        <p class="p">Precio aproximado: {{ destino.precio_aprox }}</p>
+    </div>
+
+    <a class="a box-img" href="{% url 'lista_destinos' %}">Volver a la lista</a>
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2024 Turismo La Paz | Todos los derechos reservados</p>
+        </div>
+    </footer>
+</body>
+</html>

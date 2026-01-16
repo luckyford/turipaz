@@ -1,0 +1,150 @@
+/*parte dividida de la pantalla, superior xd */
+body {
+    font-family: sans-serif;
+    margin: 0;
+    background-color: #f0f0f000; 
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; 
+}
+
+header {
+    background-color: #333333; 
+    color: #ffffff;
+    padding: 20px;
+    text-align: center;
+    
+}
+
+.logo {
+    font-size: 2em;
+    font-weight: bold;
+    text-align: left;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+    text-align: center;
+}
+
+nav li {
+    display: inline;
+    margin: 0 10px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+}
+
+.header-image {
+    position: relative; 
+    margin-top: 10px;
+
+}
+
+.header-image img {
+    width: 600px;
+    height: 300px;
+    display: block;
+    margin: 0 auto;
+}
+
+.price-banner {
+    position: center;
+    bottom: 0.5px;
+    left: 20px;
+    background-color: #ffc107;
+    color: rgb(0, 0, 0);
+    padding: 5px 5px;
+    font-weight: bold;
+    border-radius: 15px;
+    margin-top: 10px;
+}
+
+/*parte dividida de la pantalla,de abajo */
+.container-1 {
+    display: flex;
+    flex-direction: column;
+    min-height: 90vh; 
+   
+}
+
+main {
+    flex: 1;
+    padding: 20px; 
+}
+
+footer {
+    background-color: #333333; 
+    color: rgb(255, 255, 255);
+    text-align: center;
+    padding: 10px;
+    position: relative; 
+    margin-top: auto; 
+}
+
+.footer-content {
+    max-width: 1200px; 
+    margin: 0 auto; 
+}
+.h1-1{
+    font-size: 36px;
+    float: center;
+    text-align: center;
+    margin: 0 auto;
+    background-color: rgb(0, 0, 0);
+    font-size: 30px;
+    padding: 10px;
+    display: block;
+    width: 90%;
+}
+/* menu de cada seccion*/
+.menu-1 {
+    float: center; 
+    background-color: rgba(30, 143, 255, 0.696);
+    overflow-x: hidden;
+    width: 20%;
+    margin: 0 auto;
+    padding: 20px;
+}
+.menu {
+    background-color:rgb(255, 255, 255);
+    text-align: center;
+    width: 50% ; /* Ajusta el ancho de cada sección (Destinos, Eventos, Servicios) */
+    margin: 0 auto; /* Elimina el margen para que se distribuyan uniformemente */
+    padding: 40px 150px;
+    border-top: #f0f0f0 solid 0.80px;
+    float: center; 
+    box-sizing: border-box;
+
+}
+.container-2 {
+    display:flexbox; 
+    justify-content: space-between; 
+    margin-top: 20px;
+    width: 100%; 
+    
+}
+.ticker-container-1{
+    width: 100%;
+    text-align: center;
+    overflow: visible;
+    background-color: #f0f0f000;
+    padding: 10px 5px;
+}
+.menu-2{
+    background-color:rgb(255, 255, 255);
+    text-align: center;
+    width: 50% ;
+    height: auto; /* Ajusta el ancho de cada sección (Destinos, Eventos, Servicios) */
+    margin: 0 auto; /* Elimina el margen para que se distribuyan uniformemente */
+    padding: 40px 150px;
+    border-top: #f0f0f0 solid 0.80px;
+    float: center; 
+    box-sizing: border-box;
+
+}
+ 

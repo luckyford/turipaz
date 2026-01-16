@@ -1,0 +1,78 @@
+.menu-2 {
+    background-color:rgba(255, 255, 255, 0.378);
+    text-align: center;
+    width: 60%;
+    margin: 0 auto;
+    padding: 30px; 
+    border-radius: 10px;
+    border: 3px ;
+    border-color: #000000;
+}
+
+.p {
+    font-family: 'newspaper', sans-serif;
+    font-style: italic;
+    text-align: center;
+}
+.contenedor-1{
+    display: flex;
+    flex-direction: column;
+    min-height: 10vh; 
+    text-align: center;
+    background-color: rgba(240, 248, 255, 0.996);
+    border-radius: 23px;
+    margin: 20px;
+    padding: 20px;
+    animation: fadeIn 3s ease-out;
+    background-image: url("https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2f/fb/50/f4/caption.jpg?w=1200&h=-1&s=1");
+    background-size: cover;
+    background-position: center;
+    opacity: 0.8;
+    
+}
+
+.footer-1 {
+    background-color: #333333;
+    color: rgb(255, 255, 255);
+    text-align: center; 
+    padding: 10px;
+} 
+.footer-content-1 {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.a {
+    animation: fadeInLink 2s ease-in-out infinite;  
+    background-color: #ffffffb4;
+    text-decoration: none;
+    text-shadow:  2px 2px 4px #000000a2;
+    text-align: left;
+   
+}
+@keyframes fadeInLink{
+    0% { color: #00008B; opacity: 1; }
+    50% { color: #1E90FF; opacity: 1; }
+    100% { color: #00008B; opacity: 1; }
+    50% { color: #1E90FF; opacity: 1; }
+    0% { color: #00008B; opacity: 1; }
+}
+.menu-1{
+    display: inline-block;
+}
+footer {
+    background-color: #333333; 
+    color: rgb(255, 255, 255);
+    text-align: center;
+    padding: 10px;
+    position: relative; 
+    margin-top: auto; 
+     position: sticky; /* Se pega a la parte inferior */
+    bottom: 0; /* Se pega a la parte inferior */
+    margin-top: 191px; 
+}
+
+.footer-content {
+    max-width: 1200px; 
+    margin: 0 auto; 
+    
+}

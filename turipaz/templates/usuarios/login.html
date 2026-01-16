@@ -1,0 +1,131 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio de Sesión</title>
+
+    <style>
+        /* RESET */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* FONDO */
+        body {
+            min-height: 100vh;
+            background-image: url("{% static 'img/inicio.png' %}");
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* TÍTULO */
+        h1 {
+            position: absolute;
+            top: 60px;
+            color: white;
+            font-size: 32px;
+            text-shadow: 0 3px 8px rgba(0, 0, 0, 0.7);
+        }
+
+        /* CONTENEDOR */
+        form {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px 35px;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 380px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* CAMPOS */
+        form p {
+            margin-bottom: 15px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+
+        /* BOTÓN */
+        .btn-1 {
+            width: 100%;
+            padding: 12px;
+            background: #007bff;
+            border: none;
+            border-radius: 6px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-1:hover {
+            background: #0056b3;
+        }
+
+        /* TEXTO */
+        .registro {
+            margin-top: 15px;
+            text-align: center;
+            color: #333;
+        }
+
+        .registro a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .registro a:hover {
+            text-decoration: underline;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 480px) {
+            form {
+                margin: 20px;
+                padding: 25px;
+            }
+
+            h1 {
+                font-size: 26px;
+                top: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Inicio de Sesión</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn-1">Iniciar Sesión</button>
+    </form>
+
+    <p class="registro">
+        ¿No tienes una cuenta?
+        <a href="{% url 'registro' %}">Regístrate</a>
+    </p>
+
+</body>
+</html>

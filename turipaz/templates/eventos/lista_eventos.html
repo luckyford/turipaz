@@ -1,0 +1,198 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Eventos</title>
+
+    <link rel="stylesheet" href="{% static 'css/styles2-0.css' %}">
+
+    <style>
+         .mi-elemento {
+            animation: aparecer 9s ease-out;
+        }
+
+        .background-slider {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-size: cover;
+            background-position: center;
+            animation: cambioSuave 16s infinite;
+            background-attachment: scroll;
+        }
+
+        @keyframes cambioSuave {
+            2%, 100% {
+                background-image: url("{% static 'img/cielo.png.jpg' %}");
+            }
+
+            35% {
+                background-image: url("{% static 'img/destinos.png' %}");
+            }
+
+            50% {
+                background-image: url("{% static 'img/eventos.png' %}");
+            }
+
+            75% {
+                background-image: url("{% static 'img/paisaje.png' %}");
+            }
+        }
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Contenedor general */
+        .page-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        /* Título */
+        .text-with-image {
+            font-size: 48px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: transparent;
+            background-image: url("https://lirp.cdn-website.com/f4f7809c/dms3rep/multi/opt/playas-de-la-paz-1024x640-1-640w.jpg");
+            background-size: cover;
+            background-position: center;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 40px;
+        }
+
+        /* Grid de eventos */
+        .eventos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        /* Tarjeta de evento */
+        .evento-card {
+            background: #ffffff;
+            border-radius: 14px;
+            padding: 20px;
+            text-align: left;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .evento-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+        }
+
+        .evento-card a {
+            font-size: 20px;
+            font-weight: bold;
+            color: #003366;
+            text-decoration: none;
+        }
+
+        .evento-card a:hover {
+            text-decoration: underline;
+        }
+
+        .evento-card p {
+            margin: 10px 0;
+            color: #333;
+        }
+
+        /* Botón volver */
+        .btn-volver {
+            display: inline-block;
+            margin: 40px auto 0;
+            padding: 12px 28px;
+            background: #003366;
+            color: #fff;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+
+        .btn-volver:hover {
+            background: #1e90ff;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 60px;
+            padding: 20px 0;
+            background: #111;
+            color: #fff;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .text-with-image {
+                font-size: 32px;
+            }
+        }
+        
+        .text-with-image {
+            font-family: 'Trebuchet MS', Arial, sans-serif;
+            font-size: 60px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: transparent;
+            background-image: url("https://lirp.cdn-website.com/f4f7809c/dms3rep/multi/opt/playas-de-la-paz-1024x640-1-640w.jpg");
+            background-size: cover;
+            background-position: center;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="background-slider"></div>
+
+    <main class="page-container">
+        <h1 class="text-with-image">Lista de Eventos</h1>
+
+        {% if eventos %}
+            <div class="eventos-grid">
+                {% for evento in eventos %}
+                    <div class="evento-card">
+                        {% if evento.id %}
+                            <a href="{% url 'detalle_evento' evento.id %}">
+                                {{ evento.nombre }}
+                            </a>
+                        {% else %}
+                            {{ evento.nombre }} (Detalles no disponibles)
+                        {% endif %}
+                        <p>{{ evento.descripcion }}</p>
+                        <p class="p">Lugar: {{ evento.lugar }}</p>
+                        <p class="p">Organizador: {{ evento.organizador }}</p>
+                        <p class="p">Costo: {{ evento.costo }}</p>
+                        
+                        <p><strong>Fecha:</strong> {{ evento.fecha_inicio }} - {{ evento.fecha_fin }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>No hay eventos disponibles.</p>
+        {% endif %}
+
+        <a class="btn-volver" href="{% url 'inicio' %}">Volver al inicio</a>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Turismo La Paz | Todos los derechos reservados</p>
+    </footer>
+</body>
+</html>

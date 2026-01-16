@@ -1,0 +1,142 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del Servicio</title>
+    <link rel="stylesheet" href="{% static 'css/styles4-0.css' %}">
+    <style>
+        /* Fondo cinematográfico elegante */
+        .background-slider {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-size: cover;
+            background-position: center;
+            background-attachment: scroll;
+            animation: cambioSuave 20s infinite;
+            transition: background-image 2s ease-in-out;
+            filter: brightness(0.85) blur(2px);
+        }
+
+        .background-slider::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.3));
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        @keyframes cambioSuave {
+            0%, 20% {
+                background-image: url("{% static 'img/cielo.png.jpg' %}");
+            }
+            35% {
+                background-image: url("{% static 'img/destinos.png' %}");
+            }
+            50% {
+                background-image: url("{% static 'img/eventos.png' %}");
+            }
+            75% {
+                background-image: url("{% static 'img/paisaje.png' %}");
+            }
+            100% {
+                background-image: url("{% static 'img/cielo.png.jpg' %}");
+            }
+        }
+
+        /* Animación de texto y container */
+        .mi-elemento {
+            animation: aparecer 9s ease-out;
+        }
+
+        .container {
+            width: 100%;
+            text-align: center;
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .text-with-image {
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            font-size: 50px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: transparent;
+            background-image: url("https://lirp.cdn-website.com/f4f7809c/dms3rep/multi/opt/playas-de-la-paz-1024x640-1-640w.jpg");
+            background-size: cover;
+            background-position: center;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Contenedor elegante tipo glassmorphism */
+        .contenedor-1 {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+            padding: 30px 40px;
+            max-width: 800px;
+            margin: 40px auto;
+            color: #fff;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .contenedor-1:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .contenedor-1 .p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="background-slider"></div>
+    <div class="container mi-elemento">
+        <h1 class="text-with-image">{{ servicio.nombre }}</h1>
+    </div>
+    <div class="contenedor-1 fade-in menu-2">
+        <p class="p">Categoría: {{ servicio.get_categoria_display }}</p>
+        <p class="p">{{ servicio.descripcion }}</p>
+        <p class="p">Dirección: {{ servicio.direccion }}</p>
+        <p class="p">Teléfono: {{ servicio.telefono }}</p>
+        <p class="p">Email: {{ servicio.email }}</p>
+        <p class="p">Precio: {{ servicio.precio_rango }}</p>
+        <p class="p">Calificación: {{ servicio.calificacion }}</p>
+    </div>
+    <a class="a" href="{% url 'lista_servicios' %}">Volver a la lista</a>
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2024 Turismo La Paz | Todos los derechos reservados</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,118 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil de Usuario</title>
+
+    <style>
+        /* RESET */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* FONDO */
+        body {
+            min-height: 100vh;
+            background-image: url("{% static 'img/inicio.png' %}");
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* TARJETA PERFIL */
+        .perfil-card {
+            background: rgba(255, 255, 255, 0.92);
+            padding: 30px 35px;
+            border-radius: 14px;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
+            text-align: center;
+        }
+
+        /* TÍTULO */
+        .perfil-card h1 {
+            margin-bottom: 25px;
+            color: #333;
+            font-size: 28px;
+        }
+
+        /* DATOS */
+        .perfil-dato {
+            background: #f5f7fa;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            color: #333;
+            font-size: 15px;
+        }
+
+        .perfil-dato span {
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        /* BOTÓN */
+        .btn {
+            display: block;
+            margin-top: 20px;
+            padding: 12px;
+            background: #dc3545;
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #b02a37;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 480px) {
+            .perfil-card {
+                margin: 20px;
+                padding: 25px;
+            }
+
+            .perfil-card h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="perfil-card">
+        <h1>Perfil de Usuario</h1>
+
+        <div class="perfil-dato">
+            <span>Usuario:</span> {{ user.username }}
+        </div>
+
+        <div class="perfil-dato">
+            <span>Email:</span> {{ user.email }}
+        </div>
+
+        <div class="perfil-dato">
+            <span>Teléfono:</span> {{ user.telefono }}
+        </div>
+
+        <div class="perfil-dato">
+            <span>Municipio:</span> {{ user.municipio }}
+        </div>
+
+        <a href="{% url 'logout' %}" class="btn">Cerrar Sesión</a>
+    </div>
+
+</body>
+</html>
